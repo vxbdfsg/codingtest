@@ -28,8 +28,11 @@ string change(int i, int n){
 string solution(int n, int t, int m, int p) {
     string answer = "";
     string temp = "";
-    for(int i = 0 ; i < t * m ; i ++){
+    for(int i = 0 ; i < t*m ; i ++){
         temp += change(i, n);
+        if(temp.size()>t*m){
+            i += t*m;
+        }
     }
     for(int i = 0 ; i < t ; i ++){
         answer += temp[i*m+p-1];
