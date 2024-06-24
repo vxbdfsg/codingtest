@@ -1,0 +1,16 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+bool solution(int x) {
+    bool answer = false;
+    int temp_x = x;
+    int temp = 0;
+    while (x>=1){
+        temp += x%10;
+        x/=10;
+    }
+    if(temp_x %temp == 0) answer = true;
+    return answer;
+}
