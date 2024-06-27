@@ -1,0 +1,19 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+vector<int> solution(int n, int m) {
+    vector<int> answer;
+    int a = n, b = m;
+    int c;
+	while (b != 0){
+		c = a % b;
+		a = b;
+		b = c;
+	}
+    answer.push_back(a);
+    answer.push_back(n * m / a);
+    return answer;
+}
