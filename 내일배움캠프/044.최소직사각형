@@ -1,0 +1,16 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<vector<int>> sizes) {
+    int answer = 0;
+    int maxa = 0 , maxb = 0;
+    for(int i = 0 ; i < sizes.size() ; i++){
+        sort(sizes[i].begin(), sizes[i].end());
+        if(sizes[i][0] > maxa) maxa = sizes[i][0];
+        if(sizes[i][1] > maxb) maxb = sizes[i][1];
+    }
+    return maxa*maxb;
+}
