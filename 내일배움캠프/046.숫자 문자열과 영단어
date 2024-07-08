@@ -1,0 +1,25 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+vector<string> num = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+
+int solution(string s) {
+    string answer = "";
+    while(s.length() != 0){
+        if(isdigit(s[0])) {
+            answer += to_string(s[0]-48);
+            s.erase(0,1);
+        }
+        else {
+            for(int i = 0 ; i < 10 ; i++){
+                if(s.find(num[i]) == 0){
+                    answer += to_string(i);
+                    s.erase(0, num[i].length());
+                    continue;
+                }
+            }
+        }
+    }
+    return stoi(answer);
+}
