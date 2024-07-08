@@ -1,0 +1,21 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+vector<string> solution(vector<string> strings, int n) {
+    vector<string> answer;
+    sort(strings.begin(), strings.end());
+    answer.push_back(strings[0]);
+    for(int i = 1 ; i < strings.size() ; i++){
+        int temp = 0;
+        for(int j = 0 ; j < answer.size() ; j++){
+            if(answer[j][n] <= strings[i][n]){
+                temp = j+1;
+            }
+        }
+        answer.insert(answer.begin() + temp, strings[i]);
+    }
+    return answer;
+}
