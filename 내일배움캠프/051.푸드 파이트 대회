@@ -1,0 +1,14 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(vector<int> food) {
+    string answer = "";
+    for(int i = 1 ; i < food.size() ; i++){
+        if(food[i] % 2 == 1) food[i] -= 1;
+        for(int j = 0 ; j < food[i] ; j++) answer.insert(answer.length()/2, to_string(i));
+    }
+    answer.insert(answer.length()/2, "0");
+    return answer;
+}
