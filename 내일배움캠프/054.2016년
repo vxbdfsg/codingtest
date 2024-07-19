@@ -1,0 +1,13 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(int a, int b) {
+    int temp = b-1;
+    vector<int> month = {31,29,31,30,31,30,31,31,30,31,30,31};
+    for(int i = 0 ; i < a-1 ; i++) temp += month[i];
+    vector<string> week = {"FRI","SAT","SUN","MON","TUE","WED","THU"};
+    string answer = week[temp % 7];
+    return answer;
+}
