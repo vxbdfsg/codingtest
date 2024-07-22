@@ -1,0 +1,18 @@
+function solution(answers) {
+    var answer = [];
+    var s1 = [1,2,3,4,5];
+    var s2 = [2,1,2,3,2,4,2,5];
+    var s3 = [3,3,1,1,2,2,4,4,5,5];
+    var c1 = 0;
+    var c2 = 0;
+    var c3 = 0;
+    for(var i = 0 ; i < answers.length ; i++){
+        if(answers[i] === s1[i%5]) c1 = c1 + 1;
+        if(answers[i] === s2[i%8]) c2++;
+        if(answers[i] === s3[i%10]) c3++;
+    }
+    if(Math.max(c1,c2,c3) == c1) answer.push(1);
+    if(Math.max(c1,c2,c3) == c2) answer.push(2);
+    if(Math.max(c1,c2,c3) == c3) answer.push(3);
+    return answer;
+}
