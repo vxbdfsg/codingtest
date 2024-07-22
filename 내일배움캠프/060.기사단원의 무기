@@ -1,0 +1,20 @@
+function countDivisor(num){
+     let sum = 0;
+        for(let i = 1; i <= Math.sqrt(num); i++ ){
+            if (num % i === 0){
+                sum += 1;
+                if (num / i !== i) sum += 1;
+            }
+        }
+        return sum;
+}
+
+function solution(number, limit, power) {
+    var answer = 0;
+    var list = [];
+    for(var i = 1 ; i <= number ; i++){
+        if(countDivisor(i)>limit) answer += power;
+        else answer += countDivisor(i);
+    }
+    return answer;
+}
