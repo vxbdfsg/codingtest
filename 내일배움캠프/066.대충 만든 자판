@@ -1,0 +1,21 @@
+function solution(keymap, targets) {
+    var answer = [];
+    var count = {};
+    for(var i = 0 ; i < keymap.length ; i++){
+        for(var j = 0 ; j < keymap[i].length ; j++){
+            if(!count[keymap[i][j]] || j < count[keymap[i][j]]) count[keymap[i][j]] = j+1;
+        }
+    }
+    for(var tar of targets){
+        var sum = 0;
+        for(var i = 0 ; i < tar.length ; i++){
+            if(!count[tar[i]]){
+                sum = -1;
+                break;
+            }
+            sum += count[tar[i]];
+        }
+        answer.push(sum);
+    }
+    return answer;
+}
