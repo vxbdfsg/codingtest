@@ -1,0 +1,22 @@
+function solution(survey, choices) {
+    var answer = '';
+    var list = [0,0,0,0];
+    var idx = ["RT", "TR", "CF", "FC", "JM", "MJ", "AN", "NA"];
+    for(var i = 0 ; i < survey.length ; i++){
+        if(idx.indexOf(survey[i]) % 2 === 0){
+            list[idx.indexOf(survey[i]) / 2] += (choices[i] - 4);
+        }
+        else{
+            list[Math.floor(idx.indexOf(survey[i]) / 2)] -= (choices[i] - 4);
+        }
+    }
+    for(var j = 0 ; j < 4 ; j++){
+        if(list[j] > 0){
+            answer += idx[j* 2 + 1][0];
+        }
+        if(list[j] <= 0){
+            answer += idx[j* 2][0];
+        }
+    }
+    return answer;
+}
