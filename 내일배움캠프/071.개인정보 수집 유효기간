@@ -1,0 +1,25 @@
+function solution(today, terms, privacies) {
+    var answer = [];
+    var now = new Date(today.substr(0, 10));
+    now.setDate(now.getDate() + 1);
+    var count = 0;
+    for(var i of privacies){
+        var date = i.split('.');
+        var newDate = new Date(i.substr(0, 10));
+        var kind = 0;
+        for(var j = 0 ; j < terms.length ; j++){
+            if(terms[j].includes(i.substr(i.length - 1))){
+                kind = terms[j].split(' ')[1];
+            }
+        }
+        newDate.setMonth(newDate.getMonth() + Number(kind));
+        newDate.setDate(newDate.getDate() + 1);
+        if((newDate.getTime() - now.getTime() <= 0)){
+           answer.push(count+1);
+        }
+        count += 1;
+        newDate = newDate.toISOString().substring(0,10);
+    }
+    now = now.toISOString().substring(0,10);
+    return answer;
+}
