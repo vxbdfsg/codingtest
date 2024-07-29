@@ -1,0 +1,14 @@
+function solution(wallpaper) {
+    var answer = [99,99,0,0];
+    for(var i = 0 ; i < wallpaper.length ; i++){
+        if(wallpaper[i].includes('#')){
+            if(answer[0] > i) answer[0] = i;
+            if(answer[2] < i+1) answer[2] = i + 1;
+            var first = wallpaper[i].indexOf('#');
+            var last = wallpaper[i].lastIndexOf('#');
+            if(answer[1] > first) answer[1] = first;
+            if(answer[3] < last+1) answer[3] = last+1;
+        }
+    }
+    return answer;
+}
