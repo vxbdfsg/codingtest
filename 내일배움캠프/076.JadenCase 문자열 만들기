@@ -1,0 +1,16 @@
+function solution(s) {
+    var answer = '';
+    var temp = s.split(' ');
+    var list = [];
+    for(var i = 0 ; i < temp.length ; i++){
+        if(temp[i] !== null) list.push(temp[i]);
+    }
+    for(var i = 0 ; i < list.length ; i++){
+        for(var j = 0 ; j < list[i].length ; j++){
+            if(j === 0) answer += list[i][j].toUpperCase();
+            else answer += list[i][j].toLowerCase();
+        }
+        if(i !== list.length - 1) answer += ' ';
+    }
+    return answer;
+}
