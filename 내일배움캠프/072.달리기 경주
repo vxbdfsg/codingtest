@@ -1,0 +1,15 @@
+function solution(players, callings) {
+    var map = {};
+    for(var i = 0 ; i < players.length ; i++){
+        map[players[i]] = i;
+    }
+    for(var i = 0 ; i < callings.length ; i++){
+        var temp = map[callings[i]];
+        var temp2 = players[temp-1];
+        players[temp-1] = callings[i];
+        players[temp] = temp2;
+        map[temp2] = temp;
+        map[callings[i]] = temp-1;
+    }
+    return players;
+}
