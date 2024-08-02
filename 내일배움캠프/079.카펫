@@ -1,0 +1,11 @@
+function solution(brown, yellow) {
+    var answer = [];
+    var ab = (brown + 4) / 2;
+    for(var i = 3 ; i <= ab / 2 ; i++){
+        if((i - 2) * (ab - i - 2) === yellow){
+            answer[1] = i;
+            answer[0] = ab - i;
+        }
+    }
+    return answer;
+}
