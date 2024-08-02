@@ -1,0 +1,16 @@
+function solution(k, tangerine) {
+    var answer = 0;
+    var max = Math.max(...tangerine);
+    var arr = new Array(max + 1).fill(0);
+    for(var i = 0 ; i < tangerine.length ; i++){
+        arr[tangerine[i]] += 1;
+    }
+    arr.sort((a, b) => b - a);
+    for(var i = 0 ; i < arr.length ; i++){
+        answer++;
+        if (k > arr[i]) k -= arr[i];
+        else break;
+    }
+    console.log(arr);
+    return answer;
+}
