@@ -1,0 +1,12 @@
+function solution(elements) {
+    var answer = [];
+    for(var i = 0 ; i < elements.length ; i++){
+        var temp = 0;
+        for(var j = 0 ; j < elements.length ; j++){
+            temp += elements[(i + j) % elements.length];
+            answer.push(temp);
+        }
+    }
+    answer = [...new Set(answer)];
+    return answer.length;
+}
