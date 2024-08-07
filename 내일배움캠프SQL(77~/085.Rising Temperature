@@ -1,0 +1,6 @@
+SELECT Id
+FROM (SELECT Id, temperature, LAG(temperature) OVER(ORDER BY recordDate) as prev,
+recordDate, LAG(recordDate) OVER(ORDER BY recordDate) as pred
+FROM Weather
+ORDER BY recordDate) a
+WHERE temperature - prev > 0 and prev is not null and DATEDIFF(recordDate, pred) = 1
