@@ -1,0 +1,18 @@
+function solution(progresses, speeds) {
+    var answer = [];
+    var idx = 0;
+    var temp = 0;
+    while(idx < progresses.length){
+        for(var i = 0 ; i < progresses.length ; i++){
+            progresses[i] += speeds[i];
+        }
+        for(; idx < progresses.length;idx++){
+            if(progresses[idx] >= 100)
+                temp += 1;
+            else break;
+        }
+        if(temp !== 0) answer.push(temp);
+        temp = 0;
+    }
+    return answer;
+}
