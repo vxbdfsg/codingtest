@@ -1,0 +1,27 @@
+function solution(k, dungeons) {
+    var answer = -1;
+    var maxk = -1;
+    
+    function greedy(k, d, m){
+        for(var i = 0 ; i < d.length ; i++){
+            var p = k;
+            var mp = m;
+            var temp_d = d.slice();
+            if(p >= d[i][0]){
+                p -= d[i][1];
+                mp += 1;
+            }
+            else continue;
+            
+            if(mp >= maxk) maxk = mp;
+            
+            for(var j = 0 ; j < d.length ; j++) temp_d[j] = d[j];
+            temp_d.splice(i,1);
+            greedy(p, temp_d, mp);
+        }
+    }
+    
+    greedy(k, dungeons, 0);
+    
+    return maxk;
+}
