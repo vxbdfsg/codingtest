@@ -1,0 +1,29 @@
+function solution(fees, records) {
+    var answer = [];
+    let inout = new Map();
+    let fee = new Map();
+    for(let i = 0 ; i < records.length ; i++){
+        if(inout.has(records[i].slice(6, 10))){
+            let temp = Number(records[i].slice(0,2)) * 60 + Number(records[i].slice(3,5));
+            let parktime = Number(temp - inout.get(records[i].slice(6, 10)));
+            if(!fee.has(records[i].slice(6, 10))) fee.set(records[i].slice(6, 10), parktime);
+            else{
+                fee.set(records[i].slice(6, 10), parktime + fee.get(records[i].slice(6, 10)));
+            }
+            inout.delete(records[i].slice(6, 10));
+        }
+        else{
+            let time = Number(records[i].slice(0,2)) * 60 + Number(records[i].slice(3,5));
+            inout.set(records[i].slice(6, 10), time);
+        }
+    }
+    for(let i of inout.keys()){
+        if(fee.has(i)) fee.set(i, fee.get(i) - inout.get(i) + 1439);
+        else fee.set(i, 1439 - inout.get(i));
+    }
+    let sortfee = [...fee].sort();
+    for(let i = 0 ; i < sortfee.length ; i++){
+        answer.push(fees[1] + Math.ceil((Math.max(sortfee[i][1] - Number(fees[0]), 0) / fees[2])) * fees[3]);
+    }
+    return answer;
+}
