@@ -1,0 +1,15 @@
+let answer = 0;
+function dfs (num, target, i, sum){
+    if( i >= num.length){
+        if(target === sum) answer += 1;
+    }
+    else{
+        dfs(num, target, i+1, sum + num[i]);
+        dfs(num, target, i+1, sum - num[i]);
+    }
+}
+
+function solution(numbers, target) {
+    dfs(numbers, target, 0, 0);
+    return answer;
+}
