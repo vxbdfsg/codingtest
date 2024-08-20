@@ -1,0 +1,19 @@
+function solution(numbers) {
+    let answer = [];
+    let stk = [];
+    for(let i = numbers.length - 1 ; i >= 0 ; i--){
+        while(1){
+            if(stk.length === 0){
+                answer[i] = -1;
+                break;
+            }
+            if(stk[stk.length-1] > numbers[i]){
+                answer[i] = stk[stk.length-1];
+                break;
+            }
+            stk.pop();
+        }
+        stk.push(numbers[i]);
+    }    
+    return answer;
+}
