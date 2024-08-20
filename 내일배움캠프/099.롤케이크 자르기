@@ -1,0 +1,19 @@
+function solution(topping) {
+    var answer = 0;
+    let big = new Map();
+    let small = new Map();
+    for(let i = 0 ; i < topping.length ; i++){
+        if(small.has(topping[i])) small.set(topping[i], small.get(topping[i]) + 1);
+        else small.set(topping[i], 1);
+    }
+    for(let i = 0 ; i < topping.length ; i++){
+        if(big.has(topping[i])) big.set(topping[i], big.get(topping[i]) + 1);
+        else big.set(topping[i], 1);
+        small.set(topping[i], small.get(topping[i]) - 1);
+        
+        if(small.get(topping[i]) === 0) small.delete(topping[i]);
+        
+        if(big.size === small.size) answer += 1;
+    }
+    return answer;
+}
