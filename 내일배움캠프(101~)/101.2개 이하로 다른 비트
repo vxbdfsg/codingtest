@@ -1,0 +1,9 @@
+function solution(numbers) {
+    var answer = [];
+    for(let num of numbers) {
+        let toStr = num.toString(2).split('').reverse().indexOf('0');
+        if(toStr === -1) answer.push(num + 2**(num.toString(2).length - 1));
+        else answer.push(Math.ceil(2 ** (toStr-1)) + num);
+    }
+    return answer;
+}
