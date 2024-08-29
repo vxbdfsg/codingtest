@@ -1,0 +1,15 @@
+function solution(order) {
+    var answer = 0;
+    let idx = 1;
+    let len = order.length;
+    let stack = [];
+    while(idx < len+1){
+        stack.push(idx);
+        while(stack.length !== 0 && stack[stack.length - 1] === order[answer]){
+            answer += 1;
+            stack.pop();
+        }
+        idx+=1;
+    }
+    return answer;
+}
