@@ -1,0 +1,38 @@
+function cutter(arr, i1, i2, j1, j2) {
+    let cut = [];
+    for (let i = i1; i < i2; i++) {
+        let row = [];
+        for (let j = j1; j < j2; j++) {
+            row.push(arr[i][j]);
+        }
+        cut.push(row);
+    }
+    return cut;
+}
+
+
+function solution(arr) {
+    var answer = [0,0];
+    function quad(n) {
+        let chk = n[0][0];
+        let equal = true;
+        let len = n.length;
+        for(let i = 0 ; i < n.length ; i++){
+            for(let j = 0 ; j < n.length ; j++){
+                if(n[i][j] !== chk){
+                    quad(cutter(n, 0, len/2, 0, len/2));
+                    quad(cutter(n, len/2, len, 0, len/2));
+                    quad(cutter(n, 0, len/2, len/2, len));
+                    quad(cutter(n, len/2, len, len/2, len));
+                    equal = false;
+                    break;
+                }
+            }
+            if(!equal) break;
+        }
+        if(equal) answer[chk] += 1;
+    }
+    
+    quad(arr);
+    return answer;
+}
