@@ -1,0 +1,17 @@
+function solution(number, k) {
+    var answer = '';
+    var stack = [];
+    stack.push(number[0]);
+    for(let i = 1 ; i < number.length ; i++){
+        while(k > 0 && stack.length !== 0 && stack[stack.length - 1] < number[i]){
+            stack.pop();
+            k--;
+        }
+        stack.push(number[i]);
+    }
+    while(k > 0){
+        stack.pop();
+        k--;
+    }
+    return stack.join('');
+}
