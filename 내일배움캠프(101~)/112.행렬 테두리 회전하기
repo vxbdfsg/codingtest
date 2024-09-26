@@ -1,0 +1,36 @@
+function solution(rows, columns, queries) {
+    var answer = [];
+    let graph = [];
+    for(let i = 0 ; i < rows ; i++){
+        let temp = [];
+        for(let j = 0 ; j < columns ; j++){
+            temp.push(i*columns + j + 1);
+        }
+        graph.push(temp);
+    }
+    for(let i = 0 ; i < queries.length ; i++){
+        let temp = rows * columns + 1;
+        let cnt = (queries[i][2] - queries[i][0] ) + (queries[i][3] - queries[i][1] );
+        let rotate = [[0,1],[1,0],[0,-1],[-1,0]];
+        let rotateOrder = 0;
+        let nowX = queries[i][0] - 1;
+        let nowY = queries[i][1] - 1;
+        let rotateTemp1 = graph[nowX][nowY];
+        let rotateTemp2 = graph[nowX][nowY];
+        let least = temp;
+        for(let j = 0 ; j < cnt * 2 ; j++){
+            if(nowX + rotate[rotateOrder][0] < queries[i][0] - 1 ||
+                nowX + rotate[rotateOrder][0] > queries[i][2] - 1 ||
+                nowY + rotate[rotateOrder][1] < queries[i][1] - 1 ||
+                nowY + rotate[rotateOrder][1] > queries[i][3] - 1) rotateOrder = (rotateOrder + 1) % 4;
+            nowX += +rotate[rotateOrder][0];
+            nowY += +rotate[rotateOrder][1];
+            if(rotateTemp1 < least) least = rotateTemp1;
+            rotateTemp2 = graph[nowX][nowY];
+            graph[nowX][nowY] = rotateTemp1;
+            rotateTemp1 = rotateTemp2;
+        }
+        answer.push(least)
+    }
+    return answer;
+}
