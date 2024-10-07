@@ -1,0 +1,50 @@
+function solution(N, road, K) {
+    const INF = 1000000;
+    let graph = [];
+    for (let i = 0; i < N; i++) {
+        let temp = new Array(N).fill(INF);
+        graph.push(temp);
+    }
+
+    for (let i = 0; i < road.length; i++) {
+        let [a, b, cost] = road[i];
+        a -= 1; 
+        b -= 1;
+        if (graph[a][b] > cost) graph[a][b] = cost;
+        if (graph[b][a] > cost) graph[b][a] = cost; 
+    }
+
+    let dist = new Array(N).fill(INF);
+    let visited = new Array(N).fill(false);
+    dist[0] = 0;
+
+    for (let i = 0; i < N; i++) {
+        let minDist = INF;
+        let minNode = -1;
+        for (let j = 0; j < N; j++) {
+            if (!visited[j] && dist[j] < minDist) {
+                minDist = dist[j];
+                minNode = j;
+            }
+        }
+        if (minNode === -1) break;
+        visited[minNode] = true;
+
+        for (let j = 0; j < N; j++) {
+            if (!visited[j] && graph[minNode][j] !== INF) {
+                let newDist = dist[minNode] + graph[minNode][j];
+                if (newDist < dist[j]) {
+                    dist[j] = newDist;
+                }
+            }
+        }
+    }
+
+    let answer = 0;
+    for (let i = 0; i < N; i++) {
+        if (dist[i] <= K) {
+            answer++;
+        }
+    }
+    return answer;
+}
