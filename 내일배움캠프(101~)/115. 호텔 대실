@@ -1,0 +1,27 @@
+function solution(book_time) {
+    var answer = 1;
+    const toMinutes = (time) => {
+        const [hours, minutes] = time.split(":").map(Number);
+        return hours * 60 + minutes;
+    };
+    book_time.sort((a, b) => {
+        return toMinutes(a[0]) - toMinutes(b[0]);
+    });
+    let rooms = [];
+    rooms.push(toMinutes(book_time[0][1]))
+    for(let i = 1 ; i < book_time.length ; i++){
+        rooms.sort()
+        let assigned = false;
+        for(let j = 0 ; j < rooms.length ; j++){
+            if(rooms[j] + 10 <= toMinutes(book_time[i][0])){
+                rooms[j] = toMinutes(book_time[i][1]);
+                assigned = true;
+                break;
+            }
+        }
+        if(!assigned) rooms.push(toMinutes(book_time[i][1]));
+        
+        if(answer < rooms.length) answer = rooms.length;
+    }
+    return answer;
+}
