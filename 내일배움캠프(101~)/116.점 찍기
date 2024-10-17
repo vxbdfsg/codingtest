@@ -1,0 +1,8 @@
+function solution(k, d) {
+    let answer = 0;
+    let i = (d / k);
+    for(let j = 0 ; j <= i ; j++){
+        answer += Math.floor(Math.sqrt(i*i - j*j)) + 1;
+    }
+    return answer;
+}
