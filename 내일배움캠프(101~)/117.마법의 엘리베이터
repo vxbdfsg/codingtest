@@ -1,0 +1,30 @@
+function solution(storey) {
+    var answer = 0;
+    let checkUpper = false;
+    let move = storey % 10;
+    storey = Math.floor(storey / 10);
+    if(move >= 5){
+        checkUpper = true;
+        answer += 10 - move
+    }
+    else{
+        answer += move;
+        checkUpper = false;
+    }
+    while(storey != 0){
+        if(checkUpper) storey += 1;
+        let move = storey % 10;
+        
+        storey = Math.floor(storey / 10);
+        if(move >= 6){
+            checkUpper = true;
+            answer += 10 - move
+        }
+        else{
+            answer += move;
+            checkUpper = false;
+        }
+    }
+    if(checkUpper) answer += 1
+    return answer;
+}
