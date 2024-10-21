@@ -1,0 +1,39 @@
+function solution(places) {
+    var answer = [];
+    for(let p = 0 ; p < 5 ; p++){
+        let dmap = [];
+        for(let i = 0 ; i < 7 ; i++){
+            let temp = [];
+            for(let j = 0 ; j < 7 ; j++){
+                temp.push(0);
+            }
+            dmap.push(temp);
+        }
+        for(let i = 0 ; i < 5 ; i++){
+            for(let j = 0 ; j < 5 ; j++){
+                if(places[p][i][j] === "P"){
+                    dmap[i+1][j+1] -= 1;
+                    dmap[i+1][j+2] -= 1;
+                    dmap[i+1][j+0] -= 1;
+                    dmap[i+2][j+1] -= 1;
+                    dmap[i+0][j+1] -= 1;
+                }
+                else if(places[p][i][j] === "X"){
+                    dmap[i+1][j+1] += 20;
+                }
+            }
+        }
+        let check = false;
+        for(let i = 1 ; i < 6 ; i++){
+            for(let j = 1 ; j < 6 ; j++){
+                if(dmap[i][j] <= -2) {
+                    check = true;
+                    break;
+                }
+            }
+        }
+        if(check) answer.push(0);
+        else answer.push(1);
+    }
+    return answer;
+}거리두기 확인하기
