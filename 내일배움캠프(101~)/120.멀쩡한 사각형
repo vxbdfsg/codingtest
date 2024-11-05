@@ -1,0 +1,10 @@
+function solution(w, h) {
+    var answer = w * h;
+    let lost = 0;
+    for(let i = 0 ; i < w ; i++){
+        let min = Math.floor((i * h) / w);
+        let max = Math.ceil(((i + 1) * h) / w);
+        lost += (max - min);
+    }
+    return answer - lost;
+}
